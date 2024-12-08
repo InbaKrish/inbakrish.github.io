@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>InbaKrishBlog on inbaKrish</title>
+    <link>http://localhost:1313/tags/inbakrishblog/</link>
+    <description>Recent content in InbaKrishBlog on inbaKrish</description>
+    <generator>Hugo -- 0.139.3</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 07 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/inbakrishblog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog Setup</title>
+      <link>http://localhost:1313/posts/blog-setup/</link>
+      <pubDate>Sat, 07 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/blog-setup/</guid>
+      <description>&lt;p&gt;Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using &lt;a href=&#34;https://weaviate.io/&#34;&gt;Weaviate&lt;/a&gt; vector database.
+![[KLQ29UJS.jpeg]]&lt;/p&gt;
+&lt;p&gt;The modern approach to implementing image search involves &lt;a href=&#34;https://www.pinecone.io/learn/vector-embeddings-for-developers/&#34;&gt;vector embeddings&lt;/a&gt;. Leveraging the magic of neural networks and vector databases, we&amp;rsquo;ll explore how to realize vector-based image searching.&lt;/p&gt;
+&lt;p&gt;The popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called &lt;a href=&#34;https://weaviate.io/&#34;&gt;Weaviate&lt;/a&gt;, which offers neural network models like &lt;a href=&#34;https://blog.devgenius.io/resnet50-6b42934db431&#34;&gt;Resnet-50&lt;/a&gt;(embedding model) for vectorization.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

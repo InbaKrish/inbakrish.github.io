@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Blog Setup | inbaKrish</title>
+<meta name="keywords" content="InbaKrishBlog">
+<meta name="description" content="Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using Weaviate vector database.
+![[KLQ29UJS.jpeg]]
+The modern approach to implementing image search involves vector embeddings. Leveraging the magic of neural networks and vector databases, we&rsquo;ll explore how to realize vector-based image searching.
+The popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called Weaviate, which offers neural network models like Resnet-50(embedding model) for vectorization.">
+<meta name="author" content="inbaKrish">
+<link rel="canonical" href="http://localhost:1313/posts/blog-setup/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/blog-setup/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/posts/blog-setup/">
+  <meta property="og:site_name" content="inbaKrish">
+  <meta property="og:title" content="Blog Setup">
+  <meta property="og:description" content="Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using Weaviate vector database. ![[KLQ29UJS.jpeg]]
+The modern approach to implementing image search involves vector embeddings. Leveraging the magic of neural networks and vector databases, we’ll explore how to realize vector-based image searching.
+The popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called Weaviate, which offers neural network models like Resnet-50(embedding model) for vectorization.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-07T00:00:00+00:00">
+    <meta property="article:tag" content="InbaKrishBlog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blog Setup">
+<meta name="twitter:description" content="Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using Weaviate vector database.
+![[KLQ29UJS.jpeg]]
+The modern approach to implementing image search involves vector embeddings. Leveraging the magic of neural networks and vector databases, we&rsquo;ll explore how to realize vector-based image searching.
+The popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called Weaviate, which offers neural network models like Resnet-50(embedding model) for vectorization.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blog Setup",
+      "item": "http://localhost:1313/posts/blog-setup/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Blog Setup",
+  "name": "Blog Setup",
+  "description": "Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using Weaviate vector database. ![[KLQ29UJS.jpeg]]\nThe modern approach to implementing image search involves vector embeddings. Leveraging the magic of neural networks and vector databases, we\u0026rsquo;ll explore how to realize vector-based image searching.\nThe popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called Weaviate, which offers neural network models like Resnet-50(embedding model) for vectorization.\n",
+  "keywords": [
+    "InbaKrishBlog"
+  ],
+  "articleBody": "Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using Weaviate vector database. ![[KLQ29UJS.jpeg]]\nThe modern approach to implementing image search involves vector embeddings. Leveraging the magic of neural networks and vector databases, we’ll explore how to realize vector-based image searching.\nThe popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called Weaviate, which offers neural network models like Resnet-50(embedding model) for vectorization.\nWhat is a vector database? Type of database, that stores date as a high-dimensional value. Working with vector embeddings is more complex and the traditional databases can’t keep up with it for providing insights and real-time analysis with the data. That’s where vector DBs come into play, these are designed for handling this type of data and offer the performance, scalability, and flexibility you need to make the most out of your data.\n![[Pasted image 20230724141302 1.png]]\nThe flow will be like, first we use the embedding model to create vectors from the content, next the vector embeddings of the content is inserted into the vector database, with some reference to the original content. Now using an application we will interact with the vector DB via the embedding model, like on issuing a query we use the same embedding model to create embeddings for the query and use those to query the database for similar vector embeddings.\nOur focus will be on constructing a fashion product search based on images, and to accomplish this, we will utilize the Myntra fashion products dataset from Kaggle. Make sure to download the dataset from the provided link, as we intend to build an image search application within our Ruby on Rails environment.\nHere are the high-level steps we’re going to follow:\nImplement the FashionProduct entity with active storage attachment (product_image) Import the dataset from Kaggle into the fashion_products table of our application. Set up Weaviate using Docker and integrate the Weaviate to ROR application using weaviate-ruby gem. Create a FashionProduct class in the Weaviate client and upload the FashionProduct records from PostgreSQL to Weaviate DB. Develop a user interface with image search functionality, making use of the Weaviate Client’s query API capabilities. Let’s start off with creating a new Rails application (used Rails 7.0.6 and Ruby 3.2.2 for this project). We will be using docker for the application and database environments (refer to the current blog’s github repo for local setup).\nrails new fashion_products_vdb --database postgresql Initialize ActiveStorage for the project\nrails active_storage:install rails db:migrate this should create the required tables for the ActiveStorage attachments. Since we are using local docker setup for active_storage attachments it will work using the local storage and doesn’t require any cloud providers setup.\nNext, let’s handle the FashionProduct entity,\nCreate model migration for the FashionProduct entity rails g model FashionProduct modify the migration and the model files with the below code.\n# db/migrate/_create_fashion_products.rb class CreateFashionProducts \u003c ActiveRecord::Migration[7.0] def change create_table :fashion_products do |t| # Product ID from the dataset t.integer :p_id # Metadata of the products from the dataset t.string :gender t.string :master_category t.string :sub_category t.string :article_type t.string :base_colour t.string :name t.string :usage t.timestamps end end end # app/models/fashion_product.rb class FashionProduct \u003c ApplicationRecord has_one_attached :product_image end The FashionProduct entity should have one ActiveStorage attachment has_one_attached :product_image to attach the image data from the dataset.\nNow migrate the fashion products data from the data set to the FashionProduct entity. For this, we need to set up a temporary volume for our application’s docker service,\nfashion_products_vdb-web: ... volumes: - .:/fashion_products_vdb - ./dataset:/dataset # Use this volume setup one time for the image dataset import process ... then place the downloaded dataset (images directory and styles.csv file) into the dataset folder created under the projects’ root folder fashion_products_vdb/dataset. Restart the server, now the files under the dataset folder will be present inside the docker container (through volume config).\nNow create a service class which process importing the data from the dataset folder to application’s database.\n# app/services/import_fashion_product_data_service.rb require 'csv' class ImportFashionProductDataService def initialize(dataset_path, metadata_file_name, image_dir) @dataset_path = dataset_path @csv_metadata_path = File.join(@dataset_path, metadata_file_name) @image_dir = File.join(@dataset_path, image_dir) end def call process_csv_data_import end private def process_csv_data_import line_number = 0 begin CSV.foreach(@csv_metadata_path, headers: true) do |row_data| create_fashion_prd_from_metadata(format_metadata(row_data)) line_number += 1 end rescue StandardError =\u003e e puts \"Error parsing CSV at line #{line_number}: #{e.message}\" end end # Create a new record with the image from CSV metadata def create_fashion_prd_from_metadata(metadata) fsprd = create_fashion_prd_with(attributes: metadata) # Image attachment process image_file = File.join(@image_dir, fsprd.p_id.to_s + '.jpg') puts image_file return unless File.exist?(image_file) fsprd.product_image.attach(io: File.open(image_file), filename: File.basename(image_file)) fsprd.save puts \"#{fsprd.name} created successfully.\" end def format_metadata(row_data) metadata = row_data.to_hash metadata = metadata.transform_keys do |k| case k.to_s when 'productDisplayName' 'name' when 'id' 'p_id' else k.to_s.underscore end end metadata end def create_fashion_prd_with(attributes:) FashionProduct.new.tap do |record| attributes.each do |k, v| next unless record.respond_to?(k + '=') record.send(k + '=', v) end end end end The above service class will loop over all the rows inside the styles.csv from the dataset which contains the product metadata and takes the corresponding image from the images folder (via the product’s id in the CSV file) and creates the FashionProduct entry with those data.\nOpen rails console and call the service class instance’s call method once to import the data to the application’s database.\ndocker-compose exec fashion_products_vdb-web bash =\u003e rails console ImportFashionProductDataService.new('\\dataset', 'styles.csv', 'images') Now we are moving to the Weaviate integration part, for the Weaviate client setup we can use Weaviate’s docker-compose configurator to generate docker-compose.yml file for our specific need. We are going to use image to vector conversion so use the below config and download the docker-compose file. ![[weaviate_img2vec_docker-compose_config.gif]]\nThe docker-compose file will contain two services, weaviate (the VDB and Weavite APIs service) and the image to vector neural network service (resnet50 pytorch). Since we are using docker service for the ruby application as well combine all the services under one docker-compose file like,\n--- version: '3.4' services: weaviate: command: - --host - 0.0.0.0 - --port - '8080' - --scheme - http image: semitechnologies/weaviate:1.19.11 ports: - 8080:8080 restart: on-failure:0 volumes: - /var/weaviate:/var/lib/weaviate environment: IMAGE_INFERENCE_API: 'http://i2v-neural:8080' QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true' PERSISTENCE_DATA_PATH: '/var/lib/weaviate' DEFAULT_VECTORIZER_MODULE: 'img2vec-neural' ENABLE_MODULES: 'img2vec-neural' CLUSTER_HOSTNAME: 'node1' i2v-neural: image: semitechnologies/img2vec-pytorch:resnet50 environment: ENABLE_CUDA: '0' database: image: postgres container_name: database env_file: - .env volumes: - ./tmp/db:/var/lib/postgresql/data ports: - 6000:5432 fashion_products_vdb-web: container_name: fashion_products_vdb-web build: . depends_on: - database - weaviate - i2v-neural env_file: - .env command: bash -c \"bundle \u0026\u0026 rm -f /fashion_products_vdb/tmp/pids/server.pid \u0026\u0026 rails db:prepare \u0026\u0026 rails server -b 0.0.0.0\" volumes: - .:/fashion_products_vdb # - ./dataset:/dataset # Use this volume setup one time for the image dataset import process ports: - 3012:3000 tty: true stdin_open: true ... By default the weaviate service does not contain any volumes option, we are adding the /var/weaviate:/var/lib/weaviate volume in order to persist the weaviate changes even after docker container restart.\nAfter the docker-compose file modifications run the docker-compose up command, it should download the images for the weaviate dependant services (note: the image sizes will be around 7GB for the resnet-50 image)\nNow add the weaviate-ruby gem to the project’s Gemfile,\n# Weaviate.io API ruby wrapper gem \"weaviate-ruby\" Create a library class to create Weaviate client instance for our application,\n# lib/weaviate_client.rb require \"weaviate\" class WeaviateClient # Creates a new WeaviateClient instance with the specified configuration def self.create_client Weaviate::Client.new( url: \"http://weaviate:8080\" # Use ENV variables ) end end Since we are using local docker setup we can use the port 8080 with weavite host for the client communication. Weaviate also provide’s cloud instances for which we need to generate API key for the client communication.\nAdd lib path to the application.rb -\u003e autoload_path config as config.autoload_paths += %W(#{config.root}/lib) in order to load the class file to use in other parts of the application.\nNext create FashionProduct class schema using rails migration that will hold our FashionProduct product_image vectors and ID.\nrails g migration weaviate_create_fashion_product_class # db/migrate/20230706115924_weaviate_create_fashion_product_class.rb class WeaviateCreateFashionProductClass \u003c ActiveRecord::Migration[7.0] def up class_name = 'FashionProduct' # Name of the class (in vector DB) weaviate_client = WeaviateClient.create_client begin if weaviate_client.schema.get(class_name: class_name) != \"Not Found\" puts \"Class '#{class_name}' already exists\" return end weaviate_client.schema.create( class_name: class_name, vectorizer: 'img2vec-neural', # Module used to vectorize the images module_config: { 'img2vec-neural': { # Weaviate's img2vec module 'imageFields': [ 'image' ] } }, properties: [ # Properties of the VDB class { 'name': 'image', 'dataType': ['blob'] }, { 'name': 'fashion_prd_id', 'dataType': ['int'] } ] ) rescue =\u003e exception if weaviate_client.schema.get(class_name: class_name) != \"Not Found\" weaviate_client.schema.delete(class_name: class_name) end raise exception end end def down weaviate_client = WeaviateClient.create_client if weaviate_client.schema.get(class_name: 'FashionProduct') != \"Not Found\" weaviate_client.schema.delete(class_name: 'FashionProduct') end end end Weaviate’s Schema contains the structure of the classes (similar to db tables). Each class contains properties (similar to table columns), we are using two properties image with blob datatype (to store the image vectors) and fashion_prd_id with integer datatype. If we want to delete a class under the schema along with all the data under the class we can use the schema - delete API as used in the down method of the migration.\nNow we will import the images to Weaviate DB. Using Weaviate objects batch create API we can import the image objects to Weaviate DB, the vector conversion of the images before storing will be handled by the Weaviate for which is uses the resnet-50 image APIs.\nCreate a one time rake to import the FashionProduct data into Weaviate DB.\ntask import_fashion_prd_data_to_weaviate: :environment do weaviate_client = WeaviateClient.create_client FashionProduct.find_in_batches(batch_size: 500) do |fpds| # Generate array with FashionProduct Base64 encoded image and ID values objects_to_upload = fpds.map do |fpd| { class: 'FashionProduct', properties: { image: Base64.strict_encode64(fpd.product_image_attachment.download).to_s, fashion_prd_id: fpd.id } } end # Weaviate.io objects API batch import p weaviate_client.objects.batch_create( objects: objects_to_upload ) end puts \"-- Total FashionProduct records: #{FashionProduct.count}\" uploaded_count = weaviate_client.query.aggs( class_name: 'FashionProduct', fields: 'meta { count }', ) puts \"-- Total objects uploaded to Weaviate DB: #{uploaded_count}\" end Now we are coming to the final stage, searching the image data with an image input. We will use the Weaviate client’s query API to get the matching image records, for which we will be passing a Base64 encoded image value for the near_image attribute.\nrequire 'open-uri' weaviate_client_inst = WeaviateClient.create_client test_img_url = '' base_64_img_string = Base64.strict_encode64(URI.parse(test_img_url).read) result = weaviate_client_inst.query.get( class_name: 'FashionProduct', limit: '5', offset: '1', near_image: \"{ image: \\\"#{base_64_img_string}\\\" }\", fields: 'fashion_prd_id' ) ## result [{\"fashion_prd_id\"=\u003e10655}, {\"fashion_prd_id\"=\u003e3077}, {\"fashion_prd_id\"=\u003e207}, {\"fashion_prd_id\"=\u003e11834}, {\"fashion_prd_id\"=\u003e7883}] ## FashionProducts stored in application database FashionProduct.where(id: result.map { |prd_val| prd_val['fashion_prd_id'] }) At last, we will build a simple UI that renders a form to get the image file from the user, and based on the search we will display all the matching FashionProduct items. Refer to the commits (FashionProducts UI dev and Image search controller with UI)\nConclusion ",
+  "wordCount" : "1801",
+  "inLanguage": "en",
+  "datePublished": "2024-12-07T00:00:00Z",
+  "dateModified": "2024-12-07T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "inbaKrish"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/blog-setup/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "inbaKrish",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="inbaKrish (Alt + H)">inbaKrish</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Blog Setup
+    </h1>
+    <div class="post-meta"><span title='2024-12-07 00:00:00 +0000 UTC'>December 7, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;inbaKrish&nbsp;|&nbsp;<a href="https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content/posts/Blog%20setup.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-is-a-vector-database" aria-label="What is a vector database?">What is a vector database?</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Have you ever wondered how to build an image search engine (like Google Images, Myntra fashion products search, etc,.)? In this blog post we will create a simple image search feature in the Ruby on Rails application using <a href="https://weaviate.io/">Weaviate</a> vector database.
+![[KLQ29UJS.jpeg]]</p>
+<p>The modern approach to implementing image search involves <a href="https://www.pinecone.io/learn/vector-embeddings-for-developers/">vector embeddings</a>. Leveraging the magic of neural networks and vector databases, we&rsquo;ll explore how to realize vector-based image searching.</p>
+<p>The popularity of vector search databases has skyrocketed recently, especially for vector conversion, storage, and retrieval tasks. In this blog post, we will specifically explore one such database called <a href="https://weaviate.io/">Weaviate</a>, which offers neural network models like <a href="https://blog.devgenius.io/resnet50-6b42934db431">Resnet-50</a>(embedding model) for vectorization.</p>
+<h2 id="what-is-a-vector-database">What is a vector database?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-vector-database">#</a></h2>
+<p>Type of database, that stores date as a high-dimensional value. Working with vector embeddings is more complex and the traditional databases can&rsquo;t keep up with it for providing insights and real-time analysis with the data. That&rsquo;s where vector DBs come into play, these are designed for handling this type of data and offer the performance, scalability, and flexibility you need to make the most out of your data.</p>
+<p>![[Pasted image 20230724141302 1.png]]</p>
+<p>The flow will be like, first we use the embedding model to create vectors from the content, next the vector embeddings of the content is inserted into the vector database, with some reference to the original content. Now using an application we will interact with the vector DB via the embedding model, like on issuing a query we use the same embedding model to create embeddings for the query and use those to query the database for similar vector embeddings.</p>
+<p>Our focus will be on constructing a fashion product search based on images, and to accomplish this, we will utilize the <a href="https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small">Myntra fashion products dataset</a> from Kaggle. Make sure to download the dataset from the provided link, as we intend to build an image search application within our Ruby on Rails environment.</p>
+<p>Here are the high-level steps we&rsquo;re going to follow:</p>
+<ol>
+<li>Implement the FashionProduct entity with active storage attachment (product_image)</li>
+<li>Import the dataset from Kaggle into the fashion_products table of our application.</li>
+<li>Set up Weaviate using Docker and integrate the Weaviate to ROR application using <a href="https://github.com/andreibondarev/weaviate-ruby">weaviate-ruby</a> gem.</li>
+<li>Create a FashionProduct class in the Weaviate client and upload the FashionProduct records from PostgreSQL to Weaviate DB.</li>
+<li>Develop a user interface with image search functionality, making use of the Weaviate Client&rsquo;s query API capabilities.</li>
+</ol>
+<p>Let&rsquo;s start off with creating a new Rails application (used Rails 7.0.6 and Ruby 3.2.2 for this project). We will be using docker for the application and database environments (refer to the current blog&rsquo;s <a href="https://github.com/InbaKrish/fashion_products_image_search">github repo</a> for local setup).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rails new fashion_products_vdb --database postgresql
+</span></span></code></pre></div><p>Initialize ActiveStorage for the project</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rails active_storage:install
+</span></span><span class="line"><span class="cl">rails db:migrate
+</span></span></code></pre></div><p>this should create the required tables for the ActiveStorage attachments. Since we are using local docker setup for active_storage attachments it will work using the local storage and doesn&rsquo;t require any cloud providers setup.</p>
+<p>Next, let&rsquo;s handle the FashionProduct entity,</p>
+<p>Create model migration for the FashionProduct entity <code>rails g model FashionProduct</code> modify the migration and the model files with the below code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># db/migrate/&lt;timestamp&gt;_create_fashion_products.rb</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CreateFashionProducts</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">[</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">change</span>  
+</span></span><span class="line"><span class="cl">		<span class="n">create_table</span> <span class="ss">:fashion_products</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> 
+</span></span><span class="line"><span class="cl">			<span class="c1"># Product ID from the dataset </span>
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">integer</span> <span class="ss">:p_id</span> 
+</span></span><span class="line"><span class="cl">			<span class="c1"># Metadata of the products from the dataset</span>
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:gender</span>  
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:master_category</span>      
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:sub_category</span>  
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:article_type</span>  
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:base_colour</span>  
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>  
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:usage</span>  
+</span></span><span class="line"><span class="cl">			  
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>  
+</span></span><span class="line"><span class="cl">		<span class="k">end</span>  
+</span></span><span class="line"><span class="cl">	<span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># app/models/fashion_product.rb</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FashionProduct</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+</span></span><span class="line"><span class="cl">  <span class="n">has_one_attached</span> <span class="ss">:product_image</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>The FashionProduct entity should have one ActiveStorage attachment <code>has_one_attached :product_image</code> to attach the image data from the dataset.</p>
+<p>Now migrate the fashion products data from the data set to the FashionProduct entity. For this, we need to set up a temporary volume for our application&rsquo;s docker service,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">fashion_products_vdb-web</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">volumes</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span>- <span class="l">.:/fashion_products_vdb  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span>- <span class="l">./dataset:/dataset</span><span class="w"> </span><span class="c"># Use this volume setup one time for the image dataset import process  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">...</span><span class="w">
+</span></span></span></code></pre></div><p>then place the downloaded dataset (images directory and styles.csv file) into the dataset folder created under the projects&rsquo;  root folder <code>fashion_products_vdb/dataset</code>. Restart the server, now the files under the dataset folder will be present inside the docker container (through volume config).</p>
+<p>Now create a service class which process importing the data from the dataset folder to application&rsquo;s database.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># app/services/import_fashion_product_data_service.rb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ImportFashionProductDataService</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="n">metadata_file_name</span><span class="p">,</span> <span class="n">image_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="vi">@dataset_path</span> <span class="o">=</span> <span class="n">dataset_path</span>
+</span></span><span class="line"><span class="cl">    <span class="vi">@csv_metadata_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="vi">@dataset_path</span><span class="p">,</span> <span class="n">metadata_file_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="vi">@image_dir</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="vi">@dataset_path</span><span class="p">,</span> <span class="n">image_dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">call</span>
+</span></span><span class="line"><span class="cl">    <span class="n">process_csv_data_import</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kp">private</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">process_csv_data_import</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line_number</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">begin</span>
+</span></span><span class="line"><span class="cl">      <span class="no">CSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="vi">@csv_metadata_path</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row_data</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">        <span class="n">create_fashion_prd_from_metadata</span><span class="p">(</span><span class="n">format_metadata</span><span class="p">(</span><span class="n">row_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line_number</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">puts</span> <span class="s2">&#34;Error parsing CSV at line </span><span class="si">#{</span><span class="n">line_number</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Create a new record with the image from CSV metadata</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">create_fashion_prd_from_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fsprd</span> <span class="o">=</span> <span class="n">create_fashion_prd_with</span><span class="p">(</span><span class="ss">attributes</span><span class="p">:</span> <span class="n">metadata</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Image attachment process</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image_file</span>  <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="vi">@image_dir</span><span class="p">,</span> <span class="n">fsprd</span><span class="o">.</span><span class="n">p_id</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="n">image_file</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">fsprd</span><span class="o">.</span><span class="n">product_image</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="ss">io</span><span class="p">:</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_file</span><span class="p">),</span> <span class="ss">filename</span><span class="p">:</span> <span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">image_file</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fsprd</span><span class="o">.</span><span class="n">save</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">fsprd</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> created successfully.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">format_metadata</span><span class="p">(</span><span class="n">row_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span> <span class="o">=</span> <span class="n">row_data</span><span class="o">.</span><span class="n">to_hash</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">transform_keys</span> <span class="k">do</span> <span class="o">|</span><span class="n">k</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="n">k</span><span class="o">.</span><span class="n">to_s</span>
+</span></span><span class="line"><span class="cl">      <span class="k">when</span> <span class="s1">&#39;productDisplayName&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;name&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">when</span> <span class="s1">&#39;id&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;p_id&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">create_fashion_prd_with</span><span class="p">(</span><span class="ss">attributes</span><span class="p">:)</span>
+</span></span><span class="line"><span class="cl">    <span class="no">FashionProduct</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">record</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">      <span class="n">attributes</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">        <span class="k">next</span> <span class="k">unless</span> <span class="n">record</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">record</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>The above service class will loop over all the rows inside the <code>styles.csv</code> from the dataset which contains the product metadata and takes the corresponding image from the images folder (via the product&rsquo;s id in the CSV file) and creates the FashionProduct entry with those data.</p>
+<p>Open rails console and call the service class instance&rsquo;s call method once to import the data to the application&rsquo;s database.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker-compose <span class="nb">exec</span> fashion_products_vdb-web <span class="nv">bash</span>
+</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; rails console
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">ImportFashionProductDataService</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;\dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;styles.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Now we are moving to the Weaviate integration part, for the Weaviate client setup we can use <a href="https://weaviate.io/developers/weaviate/installation/docker-compose">Weaviate&rsquo;s docker-compose configurator</a> to generate docker-compose.yml file for our specific need. We are going to use image to vector conversion so use the below config and download the docker-compose file.
+![[weaviate_img2vec_docker-compose_config.gif]]</p>
+<p>The docker-compose file will contain two services, weaviate (the VDB and Weavite APIs service) and the image to vector neural network service (resnet50 pytorch). Since we are using docker service for the ruby application as well combine all the services under one docker-compose file like,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.4&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">weaviate</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">command</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- --<span class="l">host  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="m">0.0.0.0</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- --<span class="l">port  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="s1">&#39;8080&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- --<span class="l">scheme  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">http  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">semitechnologies/weaviate:1.19.11  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">ports</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="m">8080</span><span class="p">:</span><span class="m">8080</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span>-<span class="l">failure:0  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">volumes</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span>- <span class="l">/var/weaviate:/var/lib/weaviate  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">environment</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">IMAGE_INFERENCE_API</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;http://i2v-neural:8080&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">QUERY_DEFAULTS_LIMIT</span><span class="p">:</span><span class="w"> </span><span class="m">25</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">PERSISTENCE_DATA_PATH</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;/var/lib/weaviate&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">DEFAULT_VECTORIZER_MODULE</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;img2vec-neural&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">ENABLE_MODULES</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;img2vec-neural&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">CLUSTER_HOSTNAME</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;node1&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">i2v-neural</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">semitechnologies/img2vec-pytorch:resnet50  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">environment</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nt">ENABLE_CUDA</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">database</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">database  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">env_file</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">.env  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">volumes</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">./tmp/db:/var/lib/postgresql/data  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">ports</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="m">6000</span><span class="p">:</span><span class="m">5432</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">fashion_products_vdb-web</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">fashion_products_vdb-web  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l">.  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">depends_on</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">database  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">weaviate  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">i2v-neural  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">env_file</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">.env  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">bash -c &#34;bundle &amp;&amp; rm -f /fashion_products_vdb/tmp/pids/server.pid &amp;&amp; rails db:prepare &amp;&amp; rails server -b 0.0.0.0&#34;  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">volumes</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="l">.:/fashion_products_vdb  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c"># - ./dataset:/dataset # Use this volume setup one time for the image dataset import process  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">ports</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span>- <span class="m">3012</span><span class="p">:</span><span class="m">3000</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">tty</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nt">stdin_open</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">...</span><span class="w">
+</span></span></span></code></pre></div><p>By default the weaviate service does not contain any volumes option, we are adding the <code>/var/weaviate:/var/lib/weaviate</code> volume in order to persist the weaviate changes even after docker container restart.</p>
+<p>After the docker-compose file modifications run the <code>docker-compose up</code> command, it should download the images for the weaviate dependant services (note: the image sizes will be around 7GB for the <code>resnet-50</code> image)</p>
+<p>Now add the <a href="https://github.com/andreibondarev/weaviate-ruby">weaviate-ruby</a> gem to the project&rsquo;s Gemfile,</p>
+<pre tabindex="0"><code># Weaviate.io API ruby wrapper  
+gem &#34;weaviate-ruby&#34;
+</code></pre><p>Create a library class to create Weaviate client instance for our application,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># lib/weaviate_client.rb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;weaviate&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">WeaviateClient</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Creates a new WeaviateClient instance with the specified configuration</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">create_client</span>
+</span></span><span class="line"><span class="cl">    <span class="no">Weaviate</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="ss">url</span><span class="p">:</span> <span class="s2">&#34;http://weaviate:8080&#34;</span>             <span class="c1"># Use ENV variables</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Since we are using local docker setup we can use the port 8080 with weavite host  for the client communication. Weaviate also provide&rsquo;s cloud instances for which we need to generate API key for the client communication.</p>
+<p>Add lib path to the application.rb -&gt; autoload_path config as <code>config.autoload_paths += %W(#{config.root}/lib)</code> in order to load the class file to use in other parts of the application.</p>
+<p>Next create FashionProduct class schema using rails migration that will hold our FashionProduct product_image vectors and ID.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rails g migration weaviate_create_fashion_product_class
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># db/migrate/20230706115924_weaviate_create_fashion_product_class.rb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">WeaviateCreateFashionProductClass</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">[</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">up</span>
+</span></span><span class="line"><span class="cl">    <span class="n">class_name</span> <span class="o">=</span> <span class="s1">&#39;FashionProduct&#39;</span>        <span class="c1"># Name of the class (in vector DB)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weaviate_client</span> <span class="o">=</span> <span class="no">WeaviateClient</span><span class="o">.</span><span class="n">create_client</span>
+</span></span><span class="line"><span class="cl">    <span class="k">begin</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">weaviate_client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="ss">class_name</span><span class="p">:</span> <span class="n">class_name</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&#34;Not Found&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">puts</span> <span class="s2">&#34;Class &#39;</span><span class="si">#{</span><span class="n">class_name</span><span class="si">}</span><span class="s2">&#39; already exists&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="n">weaviate_client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="ss">class_name</span><span class="p">:</span> <span class="n">class_name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="ss">vectorizer</span><span class="p">:</span> <span class="s1">&#39;img2vec-neural&#39;</span><span class="p">,</span>   <span class="c1"># Module used to vectorize the images</span>
+</span></span><span class="line"><span class="cl">          <span class="ss">module_config</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;img2vec-neural&#39;</span><span class="p">:</span> <span class="p">{</span>           <span class="c1"># Weaviate&#39;s img2vec module</span>
+</span></span><span class="line"><span class="cl">              <span class="s1">&#39;imageFields&#39;</span><span class="p">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s1">&#39;image&#39;</span>
+</span></span><span class="line"><span class="cl">              <span class="o">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="ss">properties</span><span class="p">:</span> <span class="o">[</span>                   <span class="c1"># Properties of the VDB class</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="o">[</span><span class="s1">&#39;blob&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;fashion_prd_id&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="s1">&#39;dataType&#39;</span><span class="p">:</span> <span class="o">[</span><span class="s1">&#39;int&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">exception</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">weaviate_client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="ss">class_name</span><span class="p">:</span> <span class="n">class_name</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&#34;Not Found&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">weaviate_client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">class_name</span><span class="p">:</span> <span class="n">class_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">      <span class="k">raise</span> <span class="n">exception</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">down</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weaviate_client</span> <span class="o">=</span> <span class="no">WeaviateClient</span><span class="o">.</span><span class="n">create_client</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">weaviate_client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="ss">class_name</span><span class="p">:</span> <span class="s1">&#39;FashionProduct&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&#34;Not Found&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">weaviate_client</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">class_name</span><span class="p">:</span> <span class="s1">&#39;FashionProduct&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Weaviate&rsquo;s Schema contains the structure of the classes (similar to db tables). Each class contains properties (similar to table columns), we are using two properties <code>image</code> with blob datatype (to store the image vectors) and <code>fashion_prd_id</code> with integer datatype. If we want to delete a class under the schema along with all the data under the class we can use the schema - delete API as used in the <code>down</code> method of the migration.</p>
+<p>Now we will import the images to Weaviate DB. Using Weaviate objects batch create API we can import the image objects to Weaviate DB, the vector conversion of the images before storing will be handled by the Weaviate for which is uses the resnet-50 image APIs.</p>
+<p>Create a one time rake to import the FashionProduct data into Weaviate DB.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">import_fashion_prd_data_to_weaviate</span><span class="p">:</span> <span class="ss">:environment</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">weaviate_client</span> <span class="o">=</span> <span class="no">WeaviateClient</span><span class="o">.</span><span class="n">create_client</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="no">FashionProduct</span><span class="o">.</span><span class="n">find_in_batches</span><span class="p">(</span><span class="ss">batch_size</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">fpds</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Generate array with FashionProduct Base64 encoded image and ID values</span>
+</span></span><span class="line"><span class="cl">    <span class="n">objects_to_upload</span> <span class="o">=</span> <span class="n">fpds</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">fpd</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="ss">class</span><span class="p">:</span> <span class="s1">&#39;FashionProduct&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="ss">properties</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="ss">image</span><span class="p">:</span> <span class="no">Base64</span><span class="o">.</span><span class="n">strict_encode64</span><span class="p">(</span><span class="n">fpd</span><span class="o">.</span><span class="n">product_image_attachment</span><span class="o">.</span><span class="n">download</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="ss">fashion_prd_id</span><span class="p">:</span> <span class="n">fpd</span><span class="o">.</span><span class="n">id</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Weaviate.io objects API batch import</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">p</span> <span class="n">weaviate_client</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">batch_create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="ss">objects</span><span class="p">:</span> <span class="n">objects_to_upload</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;-- Total FashionProduct records: </span><span class="si">#{</span><span class="no">FashionProduct</span><span class="o">.</span><span class="n">count</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">uploaded_count</span> <span class="o">=</span> <span class="n">weaviate_client</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">aggs</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">class_name</span><span class="p">:</span> <span class="s1">&#39;FashionProduct&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="ss">fields</span><span class="p">:</span> <span class="s1">&#39;meta { count }&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;-- Total objects uploaded to Weaviate DB: </span><span class="si">#{</span><span class="n">uploaded_count</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Now we are coming to the final stage, searching the image data with an image input. We will use the Weaviate client&rsquo;s query API to get the matching image records, for which we will be passing a Base64 encoded image value for the <code>near_image</code>  attribute.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">weaviate_client_inst</span> <span class="o">=</span> <span class="no">WeaviateClient</span><span class="o">.</span><span class="n">create_client</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">test_img_url</span> <span class="o">=</span> <span class="s1">&#39;&lt;URL of the image&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">base_64_img_string</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">strict_encode64</span><span class="p">(</span><span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">test_img_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">weaviate_client_inst</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl"><span class="ss">class_name</span><span class="p">:</span> <span class="s1">&#39;FashionProduct&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="ss">limit</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="ss">offset</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="ss">near_image</span><span class="p">:</span> <span class="s2">&#34;{ image: </span><span class="se">\&#34;</span><span class="si">#{</span><span class="n">base_64_img_string</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2"> }&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="ss">fields</span><span class="p">:</span> <span class="s1">&#39;fashion_prd_id&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## result</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="p">{</span><span class="s2">&#34;fashion_prd_id&#34;</span><span class="o">=&gt;</span><span class="mi">10655</span><span class="p">},</span> <span class="p">{</span><span class="s2">&#34;fashion_prd_id&#34;</span><span class="o">=&gt;</span><span class="mi">3077</span><span class="p">},</span> <span class="p">{</span><span class="s2">&#34;fashion_prd_id&#34;</span><span class="o">=&gt;</span><span class="mi">207</span><span class="p">},</span> <span class="p">{</span><span class="s2">&#34;fashion_prd_id&#34;</span><span class="o">=&gt;</span><span class="mi">11834</span><span class="p">},</span> <span class="p">{</span><span class="s2">&#34;fashion_prd_id&#34;</span><span class="o">=&gt;</span><span class="mi">7883</span><span class="p">}</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## FashionProducts stored in application database</span>
+</span></span><span class="line"><span class="cl"><span class="no">FashionProduct</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">prd_val</span><span class="o">|</span> <span class="n">prd_val</span><span class="o">[</span><span class="s1">&#39;fashion_prd_id&#39;</span><span class="o">]</span> <span class="p">})</span>
+</span></span></code></pre></div><p>At last, we will build a simple UI that renders a form to get the image file from the user, and based on the search we will display all the matching FashionProduct items. Refer to the commits (<a href="https://github.com/InbaKrish/fashion_products_image_search/commit/87afc73d43f49bf534d9ccc5192d366fb743db79">FashionProducts UI dev</a> and <a href="https://github.com/InbaKrish/fashion_products_image_search/commit/40a22ae46d759cb518d618d8d0d2d8e33fc11f39">Image search controller with UI</a>)</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/inbakrishblog/">InbaKrishBlog</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/obsidian-to-github-page---blog-pipeline/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Obsidian to Github page - Blog pipeline</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on x"
+            href="https://x.com/intent/tweet/?text=Blog%20Setup&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f&amp;hashtags=InbaKrishBlog">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f&amp;title=Blog%20Setup&amp;summary=Blog%20Setup&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f&title=Blog%20Setup">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on whatsapp"
+            href="https://api.whatsapp.com/send?text=Blog%20Setup%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on telegram"
+            href="https://telegram.me/share/url?text=Blog%20Setup&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Blog Setup on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Blog%20Setup&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fblog-setup%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">inbaKrish</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
