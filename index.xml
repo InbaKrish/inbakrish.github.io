@@ -4,7 +4,7 @@
     <title>inbaKrish</title>
     <link>https://inbakrish.github.io/</link>
     <description>Recent content on inbaKrish</description>
-    <generator>Hugo -- 0.139.4</generator>
+    <generator>Hugo -- 0.141.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 07 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://inbakrish.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -16,6 +16,17 @@
       <description>&lt;p&gt;As developers, we thrive on automation. Yet, it&amp;rsquo;s often said that one of the best ways to advance our careers is through blog contributions. Despite this, starting a blog can feel daunting—it&amp;rsquo;s not just about writing. There&amp;rsquo;s ideation, creating templates, validation, and the publishing process itself. And let’s face it, it all takes time.&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;Image Description&#34; loading=&#34;lazy&#34; src=&#34;https://inbakrish.github.io/images/Pasted%20image%2020241207210246.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I have used the following automation blog pipeline inspired from various developers and curated this workflow.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://inbakrish.github.io/posts/is-ai-replacing-software-engineers-a-mid-level-developers-perspective/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://inbakrish.github.io/posts/is-ai-replacing-software-engineers-a-mid-level-developers-perspective/</guid>
+      <description>&lt;p&gt;The tech world is abuzz with statements from industry leaders like Mark Zuckerberg, the CEO of Salesforce, and others suggesting AI will soon replace mid-level software engineers. But how much of this is hype, and how much is reality? Let’s break this down logically and focus on what’s actionable today.&lt;/p&gt;
+&lt;h2 id=&#34;the-bold-claims&#34;&gt;The Bold Claims&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Mark Zuckerberg:&lt;/strong&gt; &lt;em&gt;&amp;ldquo;Probably in 2025, Meta will have AI that can function as a mid-level engineer.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/vol1qJB2waE?si=OOPOLaK20VIprzoU&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;strong&gt;Salesforce CEO:&lt;/strong&gt; &lt;em&gt;&amp;ldquo;We’re not adding any more engineers next year because AI has boosted productivity.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
