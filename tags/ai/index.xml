@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on inbaKrish</title>
-    <link>https://inbakrish.github.io/posts/</link>
-    <description>Recent content in Posts on inbaKrish</description>
+    <title>AI on inbaKrish</title>
+    <link>https://inbakrish.github.io/tags/ai/</link>
+    <description>Recent content in AI on inbaKrish</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://inbakrish.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://inbakrish.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is AI Replacing Software Engineers? A Mid-Level Developer’s Perspective</title>
       <link>https://inbakrish.github.io/posts/is-ai-replacing-software-engineers-a-mid-level-developers-perspective/</link>
@@ -18,15 +18,6 @@
 &lt;p&gt;&lt;strong&gt;Mark Zuckerberg:&lt;/strong&gt; &lt;em&gt;&amp;ldquo;Probably in 2025, Meta will have AI that can function as a mid-level engineer.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/vol1qJB2waE?si=OOPOLaK20VIprzoU&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;&lt;strong&gt;Salesforce CEO:&lt;/strong&gt; &lt;em&gt;&amp;ldquo;We’re not adding any more engineers next year because AI has boosted productivity.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Obsidian to Github page - Blog pipeline</title>
-      <link>https://inbakrish.github.io/posts/obsidian-to-github-page---automated-blog-pipeline/</link>
-      <pubDate>Sat, 07 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://inbakrish.github.io/posts/obsidian-to-github-page---automated-blog-pipeline/</guid>
-      <description>&lt;p&gt;As developers, we thrive on automation. Yet, it&amp;rsquo;s often said that one of the best ways to advance our careers is through blog contributions. Despite this, starting a blog can feel daunting—it&amp;rsquo;s not just about writing. There&amp;rsquo;s ideation, creating templates, validation, and the publishing process itself. And let’s face it, it all takes time.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; loading=&#34;lazy&#34; src=&#34;https://inbakrish.github.io/images/Pasted%20image%2020241207210246.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I have used the following automation blog pipeline inspired from various developers and curated this workflow.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
