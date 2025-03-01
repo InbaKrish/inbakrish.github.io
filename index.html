@@ -205,6 +205,20 @@ for others (and myself!) to grow and thrive in this ever-evolving tech world. �
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">SEMI-JOIN - Optimize Your JOIN-Based Filter Queries for Maximum Performance
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Think about you have two tables author and blogs,
+-- Authors table CREATE TABLE authors( id serial primary key, name character varying unique ); -- populate authors table with random unique values INSERT INTO authors (name) SELECT md5(random()::text) FROM generate_series(1, 1000000); -- Blogs table CREATE TABLE blogs( id serial primary key, author_id integer references authors (id), name character varying unique ); -- randomly matching blogs to different authors, each can have 0/n number of blogs associated INSERT INTO blogs (author_id, name) SELECT floor(random() * 300000 &#43; 1)::int, md5(random()::text) FROM generate_series(1, 1000000); -- add index for foreign key CREATE INDEX blogs_author_id ON blogs(author_id); now I need to perform the operation to find out authors without any blogs, so known approach is that we perform left join between the author and blogs and perform filter query to find rows from author table without and matching blog items.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-25 00:00:00 +0000 UTC'>March 25, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;inbaKrish</footer>
+  <a class="entry-link" aria-label="post link to SEMI-JOIN - Optimize Your JOIN-Based Filter Queries for Maximum Performance" href="https://inbakrish.github.io/posts/semi-join---optimize-your-join-based-filter-queries-for-maximum-performance/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Obsidian to Github page - Blog pipeline
     </h2>
   </header>

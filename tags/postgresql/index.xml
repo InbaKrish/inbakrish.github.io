@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>inbaKrish</title>
-    <link>https://inbakrish.github.io/</link>
-    <description>Recent content on inbaKrish</description>
+    <title>PostgreSQL on inbaKrish</title>
+    <link>https://inbakrish.github.io/tags/postgresql/</link>
+    <description>Recent content in PostgreSQL on inbaKrish</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://inbakrish.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://inbakrish.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SEMI-JOIN - Optimize Your JOIN-Based Filter Queries for Maximum Performance</title>
       <link>https://inbakrish.github.io/posts/semi-join---optimize-your-join-based-filter-queries-for-maximum-performance/</link>
@@ -41,15 +41,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;-- add index for foreign key
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blogs_author_id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blogs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;author_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;now I need to perform the operation to find out authors without any blogs, so known approach is that we perform left join between the author and blogs and perform filter query to find rows from author table without and matching blog items.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Obsidian to Github page - Blog pipeline</title>
-      <link>https://inbakrish.github.io/posts/obsidian-to-github-page---automated-blog-pipeline/</link>
-      <pubDate>Sat, 07 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://inbakrish.github.io/posts/obsidian-to-github-page---automated-blog-pipeline/</guid>
-      <description>&lt;p&gt;As developers, we thrive on automation. Yet, it&amp;rsquo;s often said that one of the best ways to advance our careers is through blog contributions. Despite this, starting a blog can feel daunting—it&amp;rsquo;s not just about writing. There&amp;rsquo;s ideation, creating templates, validation, and the publishing process itself. And let’s face it, it all takes time.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; loading=&#34;lazy&#34; src=&#34;https://inbakrish.github.io/images/Pasted%20image%2020241207210246.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I have used the following automation blog pipeline inspired from various developers and curated this workflow.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
